@@ -4,22 +4,23 @@ This is an OCI container (aka "Docker container") for modifying disk images with
 
 ### How it works
 The container uses guestfs and guestfish to mount a partition from the disk image with QEMU, 
-and then it allows you to copy in/out files, or make other modifications to the files on the disk image.
+and then it allows you to write scripts that copy in/out files, 
+or make other modifications to the files on the disk images.
 
 ## Purpose
-Being able to edit disk images like this is super useful for modifying disk images for hands-free, bare-metal servers,
-such as Raspberry Pis.
+Being able to edit disk images in an automated way like this is super useful 
+for modifying disk images for hands-free, bare-metal servers, such as Raspberry Pis.
 
 I will be publishing a project allowing someone to create a disk image for running Fedora CoreOS on a Raspberry Pi, 
 and the user will be able to bake in an ignition file that will install and configure all the software that they need.
 
-Users can run software like kubernetes on a Raspberry Pi by just specifying some parameters to a script,
-and burning an SD card that can be inserted into a Pi and be immediately ready to go. No manual installation required,
-no more connecting a keyboard and monitor to your tiny system board.
+Users can run software like Kubernetes or zigbee2mqtt on a Raspberry Pi by just specifying some parameters to a script,
+which can then burn an SD card that can be inserted into a Pi and be immediately ready to go. 
+No manual installation required, no more connecting a keyboard and monitor to your tiny Pi system board.
 
 ### Edge computing benefits
 This script helps enable rapid deployment to edge systems using infrastructure-as-code, *without* any cloud-init/ignition infrastructure.
-Everything the edge machine needs can be baked into the image, no external servers are needed to provision the machine.
+Everything the edge machine needs can be baked into the disk image, no external servers are needed to provision the machine.
 
 ### Consistent builds
 Automating the creation of the disk image with code like this allows for consistent builds, 
@@ -31,7 +32,7 @@ Allowing users to create the final disk image themselves without needing root ac
 when it comes to supply-chain security. 
 Users can be sure that the image that they're building has nothing unwanted or malicious installed, 
 and because this container doesn't require root/privileged, 
-the user can run these scripts without worrying their workstation being attacked by a malicious script.
+the user can run these scripts without worrying about their workstation being attacked by a malicious script.
 
 ## Technical features
 The container comes with guestfs and guestfish installed,
