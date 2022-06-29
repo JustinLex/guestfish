@@ -43,7 +43,7 @@ The container has the guestfish.sh script set as the container ENTRYPOINT,
 so all that is needed is to specify the disk image you wish to modify and the guestfish commands you want to run.
 
 The directory containing your disk image should be mounted as a volume in `/root/src`. 
-Make sure tho use the :Z flag in your volume arguments if you are using a linux distro like Fedora 
+Make sure to use the :Z flag in your volume arguments if you are using a linux distro like Fedora 
 that has SELinux enabled, or guestfish will crash.
 
 You can therefore run the container with Docker or Podman, specifying the disk image name and partition number like so:
@@ -64,7 +64,7 @@ Of course, you will need to specify the commands that you want guestfish to run.
 ### An example command
 An example guestfish command is the following:
 ```
-opy-in /root/src/manifest.yaml /
+copy-in /root/src/manifest.yaml /
 ```
 This command takes the file `manifest.yaml` from the `/root/src/` directory in the container, 
 and copies it to the root (`/`) directory of the partition you have mounted. 
