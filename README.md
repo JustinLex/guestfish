@@ -2,6 +2,9 @@
 
 This is an OCI container (aka "Docker container") for modifying disk images without needing root.
 
+The Dockerfile is roughly based off of [djui's docker-guestfs](https://github.com/djui/docker-guestfs) container, 
+with additional scripts written by me to run guestfish properly and automate the guestfish commands.
+
 ### How it works
 The container uses guestfs and guestfish to mount a partition from the disk image with QEMU, 
 and then it allows you to write scripts that copy in/out files, 
