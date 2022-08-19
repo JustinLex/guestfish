@@ -1,0 +1,34 @@
+name: Build and publish image
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-publsh:
+    name: Build and publish image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+
+      - name: Build OCI image for guestfish
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: ghcr.io/JustinLex/guestfish
+          tags: "${{ github.sha }} latest"
+          context: '.'
+          containerfiles: "Containerfile"
+
+      - name: Log in to gh registry
+        uses: redhat-actions/podman-login@v1
+        with:
+          username: "${{ github.actor }}"
+          password: "${{ secrets.GITHUB_TOKEN }}"
+          registry: "ghcr.io/JustinLex"
+      - name: Publish OCI images
+        run:  |
+          podman push ghcr.io/JustinLex/guestfish:${{ github.sha }}
+          podman push ghcr.io/JustinLex/guestfish:latest
