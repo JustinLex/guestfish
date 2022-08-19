@@ -42,7 +42,7 @@ trap cleanup_guestfish EXIT ERR
 # Note that we can't use guestfish mount-local because that needs fuse
 
 # Run guestfish commands
-commands=$(cat /root/src/commands.txt)
+commands=$(cat /root/commands.txt)
 for command in $commands
 do
   # shellcheck disable=SC2086 # (disable IDE complaints)
