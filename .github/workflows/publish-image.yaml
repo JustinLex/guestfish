@@ -17,7 +17,7 @@ jobs:
       - name: Build OCI image for guestfish
         uses: redhat-actions/buildah-build@v2
         with:
-          image: ghcr.io/JustinLex/guestfish
+          image: ghcr.io/justinlex/guestfish
           tags: "${{ github.sha }} latest"
           context: '.'
           containerfiles: "Containerfile"
@@ -27,8 +27,8 @@ jobs:
         with:
           username: "${{ github.actor }}"
           password: "${{ secrets.GITHUB_TOKEN }}"
-          registry: "ghcr.io/JustinLex"
+          registry: "ghcr.io/justinlex"
       - name: Publish OCI images
         run:  |
-          podman push ghcr.io/JustinLex/guestfish:${{ github.sha }}
-          podman push ghcr.io/JustinLex/guestfish:latest
+          podman push ghcr.io/justinlex/guestfish:${{ github.sha }}
+          podman push ghcr.io/justinlex/guestfish:latest
